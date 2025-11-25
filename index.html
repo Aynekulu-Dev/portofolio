@@ -6,9 +6,9 @@
   <title>Aynekulu Dev Portfolio</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-50 font-sans text-gray-800">
+<body class="bg-gray-50 text-gray-800 font-sans scroll-smooth">
 
-  <!-- Header / Navbar -->
+  <!-- Navbar -->
   <header class="bg-white shadow-lg p-4 fixed w-full z-50">
     <div class="container mx-auto flex justify-between items-center">
       <div class="flex items-center gap-2">
@@ -16,93 +16,92 @@
         <span class="font-bold text-xl text-purple-700">Aynekulu Dev</span>
       </div>
       <nav class="space-x-4">
-        <a href="#home" class="hover:text-purple-700 transition">Home</a>
-        <a href="#about" class="hover:text-purple-700 transition">About</a>
-        <a href="#skills" class="hover:text-purple-700 transition">Skills</a>
-        <a href="#projects" class="hover:text-purple-700 transition">Projects</a>
-        <a href="#contact" class="hover:text-purple-700 transition">Contact</a>
+        <a href="#home" class="nav-link hover:text-purple-700 transition">Home</a>
+        <a href="#about" class="nav-link hover:text-purple-700 transition">About</a>
+        <a href="#skills" class="nav-link hover:text-purple-700 transition">Skills</a>
+        <a href="#projects" class="nav-link hover:text-purple-700 transition">Projects</a>
+        <a href="#contact" class="nav-link hover:text-purple-700 transition">Contact</a>
       </nav>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section id="home" class="pt-24 text-center bg-gradient-to-r from-purple-400 to-purple-600 text-white py-20">
-    <h1 class="text-5xl md:text-6xl font-bold">Hello, I'm Aynekulu</h1>
+  <!-- Hero -->
+  <section id="home" class="pt-24 text-center bg-gradient-to-r from-purple-400 to-purple-600 text-white py-32 relative">
+    <h1 class="text-5xl md:text-6xl font-bold">Hello, I'm <span id="typed-text"></span></h1>
     <p class="mt-4 text-xl md:text-2xl">Full-Stack Developer & Data Scientist</p>
     <a href="#projects" class="mt-6 inline-block px-6 py-3 bg-white text-purple-600 font-semibold rounded shadow-lg hover:bg-gray-100 transition">
       View My Work
     </a>
   </section>
 
-  <!-- About Section -->
+  <!-- About -->
   <section id="about" class="container mx-auto py-20 px-4">
     <h2 class="text-3xl font-bold mb-6 text-purple-700 text-center">About Me</h2>
     <p class="max-w-3xl mx-auto text-center text-gray-700 text-lg">
-      I am a passionate developer and data scientist with experience in building modern web applications using Django, React, and Tailwind CSS.
-      I also have expertise in data science libraries like NumPy, Pandas, Matplotlib, scikit-learn, and other ML frameworks.
-      I aim to create responsive, attractive, and interactive applications while solving real-world problems.
+      I am a passionate developer and data scientist with experience in building modern web applications using Django, React, and Tailwind CSS. I aim to create responsive, attractive, and interactive applications while solving real-world problems.
     </p>
   </section>
 
-  <!-- Skills Section -->
+  <!-- Skills -->
   <section id="skills" class="bg-gray-100 py-20 px-4">
     <h2 class="text-3xl font-bold mb-10 text-center text-purple-700">Skills</h2>
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 max-w-6xl mx-auto">
-      <!-- Backend -->
-      <div class="bg-white p-4 rounded shadow text-center">Django</div>
-      <div class="bg-white p-4 rounded shadow text-center">PostgreSQL</div>
-      <div class="bg-white p-4 rounded shadow text-center">REST API</div>
-      <!-- Frontend -->
-      <div class="bg-white p-4 rounded shadow text-center">HTML & CSS</div>
-      <div class="bg-white p-4 rounded shadow text-center">JavaScript</div>
-      <div class="bg-white p-4 rounded shadow text-center">React</div>
-      <div class="bg-white p-4 rounded shadow text-center">Tailwind CSS</div>
-      <!-- Version Control -->
-      <div class="bg-white p-4 rounded shadow text-center">Git</div>
-      <div class="bg-white p-4 rounded shadow text-center">GitHub</div>
-      <!-- Data Science / ML -->
-      <div class="bg-white p-4 rounded shadow text-center">NumPy</div>
-      <div class="bg-white p-4 rounded shadow text-center">Pandas</div>
-      <div class="bg-white p-4 rounded shadow text-center">Matplotlib</div>
-      <div class="bg-white p-4 rounded shadow text-center">scikit-learn</div>
-      <div class="bg-white p-4 rounded shadow text-center">TensorFlow</div>
+      <div class="skill-card bg-white p-6 rounded shadow text-center">Django</div>
+      <div class="skill-card bg-white p-6 rounded shadow text-center">PostgreSQL</div>
+      <div class="skill-card bg-white p-6 rounded shadow text-center">REST API</div>
+      <div class="skill-card bg-white p-6 rounded shadow text-center">HTML & CSS</div>
+      <div class="skill-card bg-white p-6 rounded shadow text-center">JavaScript</div>
+      <div class="skill-card bg-white p-6 rounded shadow text-center">React</div>
+      <div class="skill-card bg-white p-6 rounded shadow text-center">Tailwind CSS</div>
+      <div class="skill-card bg-white p-6 rounded shadow text-center">Git & GitHub</div>
+      <div class="skill-card bg-white p-6 rounded shadow text-center">NumPy</div>
+      <div class="skill-card bg-white p-6 rounded shadow text-center">Pandas</div>
+      <div class="skill-card bg-white p-6 rounded shadow text-center">Matplotlib</div>
+      <div class="skill-card bg-white p-6 rounded shadow text-center">scikit-learn</div>
+      <div class="skill-card bg-white p-6 rounded shadow text-center">TensorFlow</div>
     </div>
   </section>
 
-  <!-- Projects Section -->
+  <!-- Projects -->
   <section id="projects" class="container mx-auto py-20 px-4">
     <h2 class="text-3xl font-bold mb-10 text-purple-700 text-center">Projects</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-      <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+      <div class="project-card bg-white p-6 rounded shadow hover:shadow-lg transition">
         <h3 class="font-bold text-xl mb-2">Portfolio Website</h3>
         <p class="text-gray-700">A modern responsive portfolio built with HTML, Tailwind CSS, and React integration.</p>
       </div>
-      <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+      <div class="project-card bg-white p-6 rounded shadow hover:shadow-lg transition">
         <h3 class="font-bold text-xl mb-2">Django E-commerce</h3>
         <p class="text-gray-700">Full-stack e-commerce application with Django backend and PostgreSQL database.</p>
       </div>
-      <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+      <div class="project-card bg-white p-6 rounded shadow hover:shadow-lg transition">
         <h3 class="font-bold text-xl mb-2">ML Model Project</h3>
         <p class="text-gray-700">Data science project using Pandas, NumPy, and scikit-learn for predictive analysis.</p>
       </div>
     </div>
   </section>
 
-  <!-- Contact Section -->
+  <!-- Contact -->
   <section id="contact" class="bg-purple-50 py-20 px-4">
     <h2 class="text-3xl font-bold mb-6 text-center text-purple-700">Contact Me</h2>
-    <form class="max-w-md mx-auto grid gap-4">
-      <input type="text" placeholder="Name" class="p-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-700">
-      <input type="email" placeholder="Email" class="p-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-700">
-      <textarea placeholder="Message" rows="4" class="p-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-700"></textarea>
+    <form id="contactForm" class="max-w-md mx-auto grid gap-4">
+      <input type="text" placeholder="Name" id="name" class="p-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-700" required>
+      <input type="email" placeholder="Email" id="email" class="p-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-700" required>
+      <textarea placeholder="Message" id="message" rows="4" class="p-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-700" required></textarea>
       <button type="submit" class="bg-purple-700 text-white p-3 rounded hover:bg-purple-900 transition">Send Message</button>
     </form>
   </section>
+
+  <!-- Back to Top -->
+  <button id="backToTop" class="fixed bottom-6 right-6 bg-purple-700 text-white p-3 rounded-full shadow-lg hidden hover:bg-purple-900 transition">
+    ↑
+  </button>
 
   <!-- Footer -->
   <footer class="bg-white shadow-inner py-4 text-center text-gray-600">
     &copy; 2025 Aynekulu Dev. All rights reserved.
   </footer>
 
+  <script src="js/main.js"></script>
 </body>
 </html>
