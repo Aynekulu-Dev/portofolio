@@ -3,91 +3,105 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aynekulu | Portfolio</title>
-  <link rel="stylesheet" href="css/style.css">
+  <title>Aynekulu Dev Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-50 font-sans text-gray-800">
 
-  <!-- HEADER -->
-  <header class="header">
-    <div class="container header-inner">
-      <div class="logo">
-        <img src="images/your-profile.jpg" alt="Aynekulu" class="profile-logo">
-        <span>Aynekulu</span>
+  <!-- Header / Navbar -->
+  <header class="bg-white shadow-lg p-4 fixed w-full z-50">
+    <div class="container mx-auto flex justify-between items-center">
+      <div class="flex items-center gap-2">
+        <img src="images/your-profile.jpg" alt="Aynekulu" class="w-12 h-12 rounded-full border-2 border-purple-600 object-cover">
+        <span class="font-bold text-xl text-purple-700">Aynekulu Dev</span>
       </div>
-      <nav class="nav">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
+      <nav class="space-x-4">
+        <a href="#home" class="hover:text-purple-700 transition">Home</a>
+        <a href="#about" class="hover:text-purple-700 transition">About</a>
+        <a href="#skills" class="hover:text-purple-700 transition">Skills</a>
+        <a href="#projects" class="hover:text-purple-700 transition">Projects</a>
+        <a href="#contact" class="hover:text-purple-700 transition">Contact</a>
       </nav>
     </div>
   </header>
 
-  <!-- HERO -->
-  <section id="home" class="hero container">
-    <div class="hero-text">
-      <h1>Hello, I'm <span class="accent">Aynekulu</span></h1>
-      <p>Full-Stack Developer (Django & React)</p>
-    </div>
+  <!-- Hero Section -->
+  <section id="home" class="pt-24 text-center bg-gradient-to-r from-purple-400 to-purple-600 text-white py-20">
+    <h1 class="text-5xl md:text-6xl font-bold">Hello, I'm Aynekulu</h1>
+    <p class="mt-4 text-xl md:text-2xl">Full-Stack Developer & Data Scientist</p>
+    <a href="#projects" class="mt-6 inline-block px-6 py-3 bg-white text-purple-600 font-semibold rounded shadow-lg hover:bg-gray-100 transition">
+      View My Work
+    </a>
   </section>
 
-  <!-- ABOUT -->
-  <section id="about" class="about container">
-    <h2>About Me</h2>
-    <p>
-      I build clean, fast, and modern web applications using Python, Django, PostgreSQL, and frontend tools.
-      My goal is to build software that helps Ethiopian people.
+  <!-- About Section -->
+  <section id="about" class="container mx-auto py-20 px-4">
+    <h2 class="text-3xl font-bold mb-6 text-purple-700 text-center">About Me</h2>
+    <p class="max-w-3xl mx-auto text-center text-gray-700 text-lg">
+      I am a passionate developer and data scientist with experience in building modern web applications using Django, React, and Tailwind CSS.
+      I also have expertise in data science libraries like NumPy, Pandas, Matplotlib, scikit-learn, and other ML frameworks.
+      I aim to create responsive, attractive, and interactive applications while solving real-world problems.
     </p>
   </section>
 
-  <!-- SKILLS -->
-  <section id="skills" class="skills container">
-    <h2>Skills</h2>
-    <div class="grid">
-      <div class="card">HTML</div>
-      <div class="card">CSS</div>
-      <div class="card">JavaScript (coming soon)</div>
-      <div class="card">Python</div>
-      <div class="card">Django</div>
-      <div class="card">PostgreSQL</div>
+  <!-- Skills Section -->
+  <section id="skills" class="bg-gray-100 py-20 px-4">
+    <h2 class="text-3xl font-bold mb-10 text-center text-purple-700">Skills</h2>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 max-w-6xl mx-auto">
+      <!-- Backend -->
+      <div class="bg-white p-4 rounded shadow text-center">Django</div>
+      <div class="bg-white p-4 rounded shadow text-center">PostgreSQL</div>
+      <div class="bg-white p-4 rounded shadow text-center">REST API</div>
+      <!-- Frontend -->
+      <div class="bg-white p-4 rounded shadow text-center">HTML & CSS</div>
+      <div class="bg-white p-4 rounded shadow text-center">JavaScript</div>
+      <div class="bg-white p-4 rounded shadow text-center">React</div>
+      <div class="bg-white p-4 rounded shadow text-center">Tailwind CSS</div>
+      <!-- Version Control -->
+      <div class="bg-white p-4 rounded shadow text-center">Git</div>
+      <div class="bg-white p-4 rounded shadow text-center">GitHub</div>
+      <!-- Data Science / ML -->
+      <div class="bg-white p-4 rounded shadow text-center">NumPy</div>
+      <div class="bg-white p-4 rounded shadow text-center">Pandas</div>
+      <div class="bg-white p-4 rounded shadow text-center">Matplotlib</div>
+      <div class="bg-white p-4 rounded shadow text-center">scikit-learn</div>
+      <div class="bg-white p-4 rounded shadow text-center">TensorFlow</div>
     </div>
   </section>
 
-  <!-- PROJECTS -->
-  <section id="projects" class="projects container">
-    <h2>Projects</h2>
-    <div class="grid project-grid">
-      <div class="project-card">
-        <h3>Blog Website</h3>
-        <p>Multi-user blog built with Django.</p>
+  <!-- Projects Section -->
+  <section id="projects" class="container mx-auto py-20 px-4">
+    <h2 class="text-3xl font-bold mb-10 text-purple-700 text-center">Projects</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+        <h3 class="font-bold text-xl mb-2">Portfolio Website</h3>
+        <p class="text-gray-700">A modern responsive portfolio built with HTML, Tailwind CSS, and React integration.</p>
       </div>
-      <div class="project-card">
-        <h3>E-commerce API</h3>
-        <p>Product, cart, and order system built using Django REST Framework.</p>
+      <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+        <h3 class="font-bold text-xl mb-2">Django E-commerce</h3>
+        <p class="text-gray-700">Full-stack e-commerce application with Django backend and PostgreSQL database.</p>
       </div>
-      <div class="project-card">
-        <h3>School Management</h3>
-        <p>Students, grades, and attendance tracking.</p>
+      <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+        <h3 class="font-bold text-xl mb-2">ML Model Project</h3>
+        <p class="text-gray-700">Data science project using Pandas, NumPy, and scikit-learn for predictive analysis.</p>
       </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
-  <section id="contact" class="contact container">
-    <h2>Contact Me</h2>
-    <form class="contact-form">
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Your Email" required>
-      <textarea placeholder="Your Message" rows="5" required></textarea>
-      <button type="submit">Send</button>
+  <!-- Contact Section -->
+  <section id="contact" class="bg-purple-50 py-20 px-4">
+    <h2 class="text-3xl font-bold mb-6 text-center text-purple-700">Contact Me</h2>
+    <form class="max-w-md mx-auto grid gap-4">
+      <input type="text" placeholder="Name" class="p-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-700">
+      <input type="email" placeholder="Email" class="p-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-700">
+      <textarea placeholder="Message" rows="4" class="p-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-700"></textarea>
+      <button type="submit" class="bg-purple-700 text-white p-3 rounded hover:bg-purple-900 transition">Send Message</button>
     </form>
   </section>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <p>© 2025 Aynekulu. Designed with ❤️ using HTML & CSS only.</p>
+  <!-- Footer -->
+  <footer class="bg-white shadow-inner py-4 text-center text-gray-600">
+    &copy; 2025 Aynekulu Dev. All rights reserved.
   </footer>
 
 </body>

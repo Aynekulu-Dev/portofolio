@@ -1,9 +1,23 @@
-# Ignore node_modules or environment files if you use JS or Python later
+# Node modules
 node_modules/
-.env
-*.pyc
-__pycache__/
+package-lock.json
 
-# OS files
+# Vite / React build
+dist/
+build/
+
+# IDE / Editor
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Environment files (sensitive data)
+.env
+.env.local
+.env.*.local
+
+# Mac / Linux OS files
 .DS_Store
 Thumbs.db
