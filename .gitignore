@@ -1,8 +1,7 @@
-# Node modules
+# Node modules (if using npm for Tailwind or JS packages)
 node_modules/
-package-lock.json
 
-# Vite / React build
+# Build / dist folders
 dist/
 build/
 
@@ -21,3 +20,6 @@ build/
 # Mac / Linux OS files
 .DS_Store
 Thumbs.db
+
+# Tailwind / npm cache
+package-lock.json
