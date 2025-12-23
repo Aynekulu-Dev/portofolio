@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Contact - {{ site_settings.site_name|default:"DevPortfolio" }}{% endblock %}
+
+{% block content %}
+<div class="py-12">
+    <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Get In Touch</h1>
+            <p class="text-xl text-slate max-w-2xl mx-auto">
+                Have a project in mind? Want to collaborate? Feel free to reach out!
+            </p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-12">
+            <!-- Contact Form -->
+            <div class="glassmorphism rounded-xl p-8">
+                <h2 class="text-2xl font-bold mb-6">Send a Message</h2>
+                
+                {% if messages %}
+                {% for message in messages %}
+                <div class="mb-6 p-4 rounded-lg {% if message.tags == 'success' %}bg-green-900/50 text-green-300{% else %}bg-red-900/50 text-red-300{% endif %}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+                {% endif %}
+                
+                <form method="post" class="space-y-6">
+                    {% csrf_token %}
+                    
+                    {{ form|crispy }}
+                    
+                    <button type="submit" 
+                            class="w-full bg-accent text-primary py-3 rounded-lg font-semibold hover:bg-opacity-90 transition">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+            
+            <!-- Contact Info -->
+            <div>
+                <div class="glassmorphism rounded-xl p-8 mb-6">
+                    <h2 class="text-2xl font-bold mb-6">Contact Information</h2>
+                    
+                    <div class="space-y-6">
+                        {% if site_settings.email %}
+                        <div class="flex items-start">
+                            <i class="fas fa-envelope text-accent text-xl mr-4 mt-1"></i>
+                            <div>
+                                <h3 class="font-bold mb-1">Email</h3>
+                                <a href="mailto:{{ site_settings.email }}" class="text-slate hover:text-accent transition">
+                                    {{ site_settings.email }}
+                                </a>
+                            </div>
+                        </div>
+                        {% endif %}
+                        
+                        {% if site_settings.phone %}
+                        <div class="flex items-start">
+                            <i class="fas fa-phone text-accent text-xl mr-4 mt-1"></i>
+                            <div>
+                                <h3 class="font-bold mb-1">Phone</h3>
+                                <a href="tel:{{ site_settings.phone }}" class="text-slate hover:text-accent transition">
+                                    {{ site_settings.phone }}
+                                </a>
+                            </div>
+                        </div>
+                        {% endif %}
+                        
+                        <div class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-accent text-xl mr-4 mt-1"></i>
+                            <div>
+                                <h3 class="font-bold mb-1">Location</h3>
+                                <p class="text-slate">Remote / Available Worldwide</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Social Links -->
+                <div class="glassmorphism rounded-xl p-8">
+                    <h2 class="text-2xl font-bold mb-6">Connect Online</h2>
+                    
+                    <div class="flex space-x-6">
+                        {% if site_settings.github_url %}
+                        <a href="{{ site_settings.github_url }}" target="_blank" 
+                           class="text-3xl text-slate hover:text-accent transition">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        {% endif %}
+                        
+                        {% if site_settings.linkedin_url %}
+                        <a href="{{ site_settings.linkedin_url }}" target="_blank" 
+                           class="text-3xl text-slate hover:text-accent transition">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        {% endif %}
+                        
+                        {% if site_settings.twitter_url %}
+                        <a href="{{ site_settings.twitter_url }}" target="_blank" 
+                           class="text-3xl text-slate hover:text-accent transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        {% endif %}
+                    </div>
+                    
+                    <p class="text-slate mt-6">
+                        I'm always open to discussing new opportunities, interesting projects, 
+                        or just having a chat about technology.
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Response Time -->
+        <div class="text-center mt-12 text-slate">
+            <p>I typically respond within 24-48 hours. Looking forward to hearing from you!</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+
+{% block title %}Blog - {{ site_settings.site_name|default:"DevPortfolio" }}{% endblock %}
+
+{% block content %}
+<div class="py-12">
+    <div class="text-center mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">Blog & Articles</h1>
+        <p class="text-xl text-slate max-w-2xl mx-auto">
+            Technical tutorials, insights, and thoughts on development
+        </p>
+    </div>
+    
+    <!-- Featured Posts -->
+    {% if featured_posts %}
+    <div class="mb-12">
+        <h2 class="text-2xl font-bold mb-6">Featured Articles</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+            {% for post in featured_posts %}
+            <div class="glassmorphism rounded-lg overflow-hidden">
+                {% if post.featured_image %}
+                <div class="h-48 overflow-hidden">
+                    <img src="{{ post.featured_image.url }}" 
+                         alt="{{ post.title }}" 
+                         class="w-full h-full object-cover">
+                </div>
+                {% endif %}
+                
+                <div class="p-6">
+                    <div class="flex items-center text-sm text-slate mb-3">
+                        <span>{{ post.published_date|date:"M d, Y" }}</span>
+                        <span class="mx-2">•</span>
+                        <span>{{ post.reading_time }} min read</span>
+                        {% if post.category %}
+                        <span class="mx-2">•</span>
+                        <a href="{% url 'blog:category_detail' post.category.slug %}" 
+                           class="text-accent hover:underline">
+                            {{ post.category.name }}
+                        </a>
+                        {% endif %}
+                    </div>
+                    
+                    <h3 class="text-xl font-bold mb-3">{{ post.title }}</h3>
+                    <p class="text-slate mb-4">{{ post.excerpt }}</p>
+                    
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <span class="text-sm text-slate">By {{ post.author.username }}</span>
+                        </div>
+                        <a href="{% url 'blog:post_detail' post.slug %}" 
+                           class="text-accent hover:underline">
+                            Read More →
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+    
+    <!-- All Posts -->
+    <div>
+        <h2 class="text-2xl font-bold mb-6">Latest Articles</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for post in posts %}
+            <div class="glassmorphism rounded-lg overflow-hidden hover:transform hover:scale-[1.02] transition duration-300">
+                {% if post.featured_image %}
+                <div class="h-40 overflow-hidden">
+                    <img src="{{ post.featured_image.url }}" 
+                         alt="{{ post.title }}" 
+                         class="w-full h-full object-cover">
+                </div>
+                {% endif %}
+                
+                <div class="p-6">
+                    <h3 class="text-lg font-bold mb-2">{{ post.title }}</h3>
+                    <p class="text-slate text-sm mb-4">{{ post.excerpt|truncatechars:120 }}</p>
+                    
+                    <div class="flex justify-between items-center text-sm">
+                        <span class="text-slate">{{ post.published_date|date:"M d, Y" }}</span>
+                        <a href="{% url 'blog:post_detail' post.slug %}" 
+                           class="text-accent hover:underline">
+                            Read →
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-span-3 text-center py-12">
+                <p class="text-xl text-slate">No blog posts published yet.</p>
+                {% if user.is_staff %}
+                <a href="/admin/blog/blogpost/add/" class="text-accent hover:underline mt-4 inline-block">
+                    Add a blog post in admin
+                </a>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <!-- Pagination -->
+    {% if is_paginated %}
+    <div class="flex justify-center mt-12">
+        <div class="flex space-x-2">
+            {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}" 
+               class="px-4 py-2 glassmorphism rounded-lg hover:bg-accent/20 transition">
+                ← Previous
+            </a>
+            {% endif %}
+            
+            {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+            <span class="px-4 py-2 bg-accent text-primary rounded-lg">{{ num }}</span>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+            <a href="?page={{ num }}" 
+               class="px-4 py-2 glassmorphism rounded-lg hover:bg-accent/20 transition">
+                {{ num }}
+            </a>
+            {% endif %}
+            {% endfor %}
+            
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" 
+               class="px-4 py-2 glassmorphism rounded-lg hover:bg-accent/20 transition">
+                Next →
+            </a>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

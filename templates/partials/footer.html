@@ -1,0 +1,59 @@
+<footer class="bg-secondary py-8 mt-12">
+    <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- About -->
+            <div>
+                <h3 class="text-xl font-bold mb-4">{{ site_settings.site_name|default:"DevPortfolio" }}</h3>
+                <p class="text-slate">
+                    {{ site_settings.site_description|default:"Modern Django Developer Portfolio" }}
+                </p>
+            </div>
+            
+            <!-- Quick Links -->
+            <div>
+                <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                <ul class="space-y-2">
+                    <li><a href="{% url 'home' %}" class="text-slate hover:text-accent transition">Home</a></li>
+                    <li><a href="{% url 'portfolio:project_list' %}" class="text-slate hover:text-accent transition">Portfolio</a></li>
+                    <li><a href="{% url 'skills:skill_list' %}" class="text-slate hover:text-accent transition">Skills</a></li>
+                    <li><a href="{% url 'blog:post_list' %}" class="text-slate hover:text-accent transition">Blog</a></li>
+                    <li><a href="{% url 'contact:contact' %}" class="text-slate hover:text-accent transition">Contact</a></li>
+                </ul>
+            </div>
+            
+            <!-- Social Links -->
+            <div>
+                <h3 class="text-xl font-bold mb-4">Connect</h3>
+                <div class="flex space-x-4">
+                    {% if site_settings.github_url %}
+                    <a href="{{ site_settings.github_url }}" target="_blank" class="text-slate hover:text-accent text-2xl">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    {% endif %}
+                    
+                    {% if site_settings.linkedin_url %}
+                    <a href="{{ site_settings.linkedin_url }}" target="_blank" class="text-slate hover:text-accent text-2xl">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    {% endif %}
+                    
+                    {% if site_settings.twitter_url %}
+                    <a href="{{ site_settings.twitter_url }}" target="_blank" class="text-slate hover:text-accent text-2xl">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    {% endif %}
+                    
+                    {% if site_settings.email %}
+                    <a href="mailto:{{ site_settings.email }}" class="text-slate hover:text-accent text-2xl">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <div class="border-t border-gray-700 mt-8 pt-8 text-center text-slate">
+            <p>&copy; {% now "Y" %} {{ site_settings.site_name|default:"DevPortfolio Pro" }}. Built with Django & Tailwind CSS.</p>
+        </div>
+    </div>
+</footer>

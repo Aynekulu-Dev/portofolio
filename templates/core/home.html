@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - DevPortfolio Pro{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="min-h-screen flex flex-col justify-center py-20">
+    <div class="text-center">
+        <h1 class="text-5xl md:text-7xl font-bold mb-6">
+            Hi, I'm <span class="gradient-text">Aynekulu Molla</span>
+        </h1>
+        <p class="text-2xl md:text-3xl text-slate mb-8">
+            Backend Developer specializing in <span class="text-accent">Django & AWS</span>
+        </p>
+        <p class="text-xl text-slate max-w-2xl mx-auto mb-12">
+            I build scalable web applications with modern technologies. 
+            Welcome to my developer portfolio showcasing my projects and skills.
+        </p>
+        
+        <div class="flex flex-col md:flex-row justify-center gap-4">
+            <a href="#portfolio" 
+               class="bg-accent text-primary px-8 py-4 rounded-lg text-lg font-semibold hover:bg-opacity-90 transition">
+                View My Work
+            </a>
+            <a href="#contact" 
+               class="border-2 border-accent text-accent px-8 py-4 rounded-lg text-lg font-semibold hover:bg-accent hover:text-primary transition">
+                Contact Me
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Skills Preview -->
+<section id="skills" class="py-20">
+    <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold mb-4">Technical Skills</h2>
+        <p class="text-slate text-xl">Technologies I work with</p>
+    </div>
+    
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="bg-secondary p-6 rounded-lg text-center">
+            <i class="fab fa-python text-4xl text-accent mb-4"></i>
+            <h3 class="text-xl font-bold mb-2">Python & Django</h3>
+            <p class="text-slate">Backend development with REST APIs</p>
+        </div>
+        
+        <div class="bg-secondary p-6 rounded-lg text-center">
+            <i class="fas fa-database text-4xl text-accent mb-4"></i>
+            <h3 class="text-xl font-bold mb-2">PostgreSQL</h3>
+            <p class="text-slate">Database design & optimization</p>
+        </div>
+        
+        <div class="bg-secondary p-6 rounded-lg text-center">
+            <i class="fab fa-aws text-4xl text-accent mb-4"></i>
+            <h3 class="text-xl font-bold mb-2">AWS Cloud</h3>
+            <p class="text-slate">EC2, RDS, S3, VPC deployment</p>
+        </div>
+        
+        <div class="bg-secondary p-6 rounded-lg text-center">
+            <i class="fab fa-docker text-4xl text-accent mb-4"></i>
+            <h3 class="text-xl font-bold mb-2">Docker</h3>
+            <p class="text-slate">Containerization & DevOps</p>
+        </div>
+    </div>
+</section>
+
+<!-- Projects Preview -->
+<section id="portfolio" class="py-20 bg-secondary">
+    <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold mb-4">Featured Projects</h2>
+        <p class="text-slate text-xl">Some of my recent work</p>
+    </div>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-primary rounded-lg overflow-hidden glassmorphism">
+            <div class="p-6">
+                <h3 class="text-2xl font-bold mb-3">E-Commerce API</h3>
+                <p class="text-slate mb-4">Full-featured e-commerce backend with Django REST Framework</p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="bg-accent text-primary px-3 py-1 rounded-full text-sm">Django</span>
+                    <span class="bg-accent text-primary px-3 py-1 rounded-full text-sm">DRF</span>
+                    <span class="bg-accent text-primary px-3 py-1 rounded-full text-sm">PostgreSQL</span>
+                </div>
+                <a href="#" class="text-accent hover:underline">View Project →</a>
+            </div>
+        </div>
+        
+        <div class="bg-primary rounded-lg overflow-hidden glassmorphism">
+            <div class="p-6">
+                <h3 class="text-2xl font-bold mb-3">Portfolio Platform</h3>
+                <p class="text-slate mb-4">This portfolio website built with Django & Tailwind CSS</p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="bg-accent text-primary px-3 py-1 rounded-full text-sm">Django</span>
+                    <span class="bg-accent text-primary px-3 py-1 rounded-full text-sm">Tailwind</span>
+                    <span class="bg-accent text-primary px-3 py-1 rounded-full text-sm">AWS</span>
+                </div>
+                <a href="#" class="text-accent hover:underline">View Project →</a>
+            </div>
+        </div>
+        
+        <div class="bg-primary rounded-lg overflow-hidden glassmorphism">
+            <div class="p-6">
+                <h3 class="text-2xl font-bold mb-3">Real-time Chat App</h3>
+                <p class="text-slate mb-4">WebSocket-based chat application with Django Channels</p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="bg-accent text-primary px-3 py-1 rounded-full text-sm">Django</span>
+                    <span class="bg-accent text-primary px-3 py-1 rounded-full text-sm">Channels</span>
+                    <span class="bg-accent text-primary px-3 py-1 rounded-full text-sm">Redis</span>
+                </div>
+                <a href="#" class="text-accent hover:underline">View Project →</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-20 text-center">
+    <div class="max-w-2xl mx-auto">
+        <h2 class="text-4xl font-bold mb-6">Let's Work Together</h2>
+        <p class="text-xl text-slate mb-8">
+            Interested in collaborating on a project? Feel free to reach out!
+        </p>
+        <a href="#contact" 
+           class="inline-block bg-accent text-primary px-8 py-4 rounded-lg text-lg font-semibold hover:bg-opacity-90 transition">
+            Get In Touch
+        </a>
+    </div>
+</section>
+{% endblock %}

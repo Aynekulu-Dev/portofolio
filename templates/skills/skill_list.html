@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block title %}Skills - {{ site_settings.site_name|default:"DevPortfolio" }}{% endblock %}
+
+{% block content %}
+<div class="py-12">
+    <div class="text-center mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">Technical Skills</h1>
+        <p class="text-xl text-slate max-w-2xl mx-auto">
+            Technologies and tools I work with
+        </p>
+    </div>
+    
+    {% for category in categories %}
+    <div class="mb-12">
+        <h2 class="text-2xl font-bold mb-6 flex items-center">
+            <i class="{{ category.icon }} mr-3 text-accent"></i>
+            {{ category.name }}
+        </h2>
+        
+        <div class="grid md:grid-cols-2 gap-6">
+            {% for skill in category.skills.all %}
+            {% if skill.is_active %}
+            <div class="glassmorphism rounded-lg p-6">
+                <div class="flex justify-between items-center mb-3">
+                    <div class="flex items-center">
+                        <i class="{{ skill.icon }} text-xl text-accent mr-3"></i>
+                        <h3 class="text-lg font-bold">{{ skill.name }}</h3>
+                    </div>
+                    <span class="bg-accent/20 text-accent px-3 py-1 rounded-full text-sm">
+                        {{ skill.get_level_display }}
+                    </span>
+                </div>
+                
+                <p class="text-slate mb-4">{{ skill.description }}</p>
+                
+                <!-- Progress Bar -->
+                <div class="mb-2">
+                    <div class="flex justify-between text-sm mb-1">
+                        <span>Proficiency</span>
+                        <span>{{ skill.get_percentage_display }}%</span>
+                    </div>
+                    <div class="h-2 bg-gray-700 rounded-full overflow-hidden">
+                        <div class="h-full bg-accent rounded-full skill-bar" 
+                             style="width: {{ skill.get_percentage_display }}%"></div>
+                    </div>
+                </div>
+                
+                <div class="flex justify-between text-sm text-slate">
+                    <span>{{ skill.years_experience }} years experience</span>
+                    <span class="text-accent">{{ skill.get_percentage_display }}%</span>
+                </div>
+            </div>
+            {% endif %}
+            {% empty %}
+            <div class="col-span-2 text-center py-8">
+                <p class="text-slate">No skills added yet for this category.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% empty %}
+    <div class="text-center py-12">
+        <p class="text-xl text-slate">No skill categories defined yet.</p>
+        {% if user.is_staff %}
+        <a href="/admin/skills/skillcategory/add/" class="text-accent hover:underline mt-4 inline-block">
+            Add skill categories in admin
+        </a>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+
+<script>
+// Animate skill bars on page load
+document.addEventListener('DOMContentLoaded', function() {
+    const skillBars = document.querySelectorAll('.skill-bar');
+    skillBars.forEach(bar => {
+        const width = bar.style.width;
+        bar.style.width = '0';
+        setTimeout(() => {
+            bar.style.width = width;
+        }, 100);
+    });
+});
+</script>
+{% endblock %}

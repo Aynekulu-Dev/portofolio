@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ project.title }} - {{ site_settings.site_name|default:"DevPortfolio" }}{% endblock %}
+
+{% block content %}
+<article class="py-12">
+    <div class="max-w-6xl mx-auto">
+        <!-- Back Button -->
+        <a href="{% url 'portfolio:project_list' %}" class="inline-flex items-center text-accent hover:underline mb-8">
+            <i class="fas fa-arrow-left mr-2"></i> Back to Portfolio
+        </a>
+        
+        <!-- Header -->
+        <header class="mb-8">
+            {% if project.featured_image %}
+            <div class="rounded-xl overflow-hidden mb-6">
+                <img src="{{ project.featured_image.url }}" 
+                     alt="{{ project.title }}" 
+                     class="w-full h-96 object-cover">
+            </div>
+            {% endif %}
+            
+            <div class="flex items-center text-sm text-slate mb-4">
+                <span>{{ project.project_date|date:"F Y" }}</span>
+                <span class="mx-2">•</span>
+                <span class="px-2 py-1 rounded-full {% if project.status == 'completed' %}bg-green-900/50 text-green-300{% elif project.status == 'in_progress' %}bg-yellow-900/50 text-yellow-300{% else %}bg-blue-900/50 text-blue-300{% endif %}">
+                    {{ project.get_status_display }}
+                </span>
+                <span class="mx-2">•</span>
+                <span><i class="fas fa-eye mr-1"></i> {{ project.views }} views</span>
+            </div>
+            
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">{{ project.title }}</h1>
+            
+            <p class="text-xl text-slate mb-6">{{ project.short_description }}</p>
+        </header>
+        
+        <!-- Technologies -->
+        <div class="mb-8">
+            <h2 class="text-2xl font-bold mb-4">Technologies Used</h2>
+            <div class="flex flex-wrap gap-3">
+                {% for tech in project.technologies.all %}
+                <span class="flex items-center bg-secondary px-4 py-2 rounded-lg">
+                    <i class="{{ tech.icon }} mr-2" style="color: {{ tech.color }}"></i>
+                    <span>{{ tech.name }}</span>
+                </span>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <!-- Project Links -->
+        <div class="flex flex-wrap gap-4 mb-8">
+            {% if project.github_url %}
+            <a href="{{ project.github_url }}" target="_blank" 
+               class="flex items-center bg-gray-800 hover:bg-gray-700 px-6 py-3 rounded-lg transition">
+                <i class="fab fa-github mr-2"></i> View Source Code
+            </a>
+            {% endif %}
+            
+            {% if project.live_url %}
+            <a href="{{ project.live_url }}" target="_blank" 
+               class="flex items-center bg-accent text-primary hover:bg-opacity-90 px-6 py-3 rounded-lg transition">
+                <i class="fas fa-external-link-alt mr-2"></i> Live Demo
+            </a>
+            {% endif %}
+            
+            {% if project.demo_video_url %}
+            <a href="{{ project.demo_video_url }}" target="_blank" 
+               class="flex items-center bg-red-600 hover:bg-red-700 px-6 py-3 rounded-lg transition">
+                <i class="fab fa-youtube mr-2"></i> Watch Demo
+            </a>
+            {% endif %}
+        </div>
+        
+        <!-- Project Description -->
+        <div class="glassmorphism rounded-xl p-8 mb-8">
+            <h2 class="text-2xl font-bold mb-6">Project Overview</h2>
+            <div class="prose prose-invert max-w-none">
+                {{ project.full_description|linebreaks }}
+            </div>
+        </div>
+        
+        <!-- Screenshots -->
+        {% with screenshots=project.get_screenshots_list %}
+        {% if screenshots %}
+        <div class="mb-8">
+            <h2 class="text-2xl font-bold mb-6">Project Screenshots</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                {% for screenshot in screenshots %}
+                <div class="rounded-lg overflow-hidden">
+                    <img src="{{ screenshot }}" 
+                         alt="Screenshot {{ forloop.counter }}" 
+                         class="w-full h-64 object-cover hover:scale-105 transition duration-300 cursor-pointer"
+                         onclick="openModal('{{ screenshot }}')">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        {% endwith %}
+        
+        <!-- Features -->
+        <div class="mb-8">
+            <h2 class="text-2xl font-bold mb-6">Key Features</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="glassmorphism rounded-lg p-6">
+                    <h3 class="text-lg font-bold mb-3 flex items-center">
+                        <i class="fas fa-code text-accent mr-2"></i> Technical Features
+                    </h3>
+                    <ul class="space-y-2 text-slate">
+                        <li>• Django backend with REST API</li>
+                        <li>• PostgreSQL database</li>
+                        <li>• Responsive frontend design</li>
+                        <li>• User authentication & authorization</li>
+                        <li>• AWS deployment</li>
+                    </ul>
+                </div>
+                
+                <div class="glassmorphism rounded-lg p-6">
+                    <h3 class="text-lg font-bold mb-3 flex items-center">
+                        <i class="fas fa-rocket text-accent mr-2"></i> Project Highlights
+                    </h3>
+                    <ul class="space-y-2 text-slate">
+                        <li>• Scalable architecture</li>
+                        <li>• Clean, maintainable code</li>
+                        <li>• Comprehensive documentation</li>
+                        <li>• Performance optimized</li>
+                        <li>• Security best practices</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- What I Learned -->
+        <div class="glassmorphism rounded-xl p-8">
+            <h2 class="text-2xl font-bold mb-6">What I Learned</h2>
+            <p class="text-slate">
+                This project helped me deepen my understanding of Django best practices, 
+                AWS deployment workflows, and building scalable applications. I gained 
+                experience in database optimization, API design, and implementing 
+                security measures for production applications.
+            </p>
+        </div>
+    </div>
+</article>
+
+<!-- Lightbox Modal -->
+<div id="imageModal" class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden items-center justify-center p-4">
+    <div class="relative max-w-4xl max-h-full">
+        <button onclick="closeModal()" 
+                class="absolute -top-12 right-0 text-white text-3xl hover:text-accent transition">
+            <i class="fas fa-times"></i>
+        </button>
+        <img id="modalImage" src="" alt="" class="max-w-full max-h-[80vh] rounded-lg">
+    </div>
+</div>
+
+<script>
+function openModal(imageSrc) {
+    document.getElementById('modalImage').src = imageSrc;
+    document.getElementById('imageModal').classList.remove('hidden');
+    document.getElementById('imageModal').classList.add('flex');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+    document.getElementById('imageModal').classList.add('hidden');
+    document.getElementById('imageModal').classList.remove('flex');
+    document.body.style.overflow = 'auto';
+}
+
+// Close modal on ESC key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+});
+
+// Close modal on background click
+document.getElementById('imageModal').addEventListener('click', function(e) {
+    if (e.target.id === 'imageModal') closeModal();
+});
+</script>
+{% endblock %}

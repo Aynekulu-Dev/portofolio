@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block title %}About - {{ site_settings.site_name|default:"DevPortfolio" }}{% endblock %}
+
+{% block content %}
+<div class="py-12">
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-4xl md:text-5xl font-bold mb-8 text-center">About Me</h1>
+        
+        <div class="glassmorphism rounded-xl p-8 mb-8">
+            <h2 class="text-2xl font-bold mb-4">Hi, I'm [Your Name] 👋</h2>
+            <p class="text-slate text-lg mb-4">
+                I'm a passionate backend developer specializing in Django, Python, and AWS. 
+                I build scalable web applications and REST APIs with a focus on performance, 
+                security, and clean code.
+            </p>
+            <p class="text-slate text-lg">
+                With expertise in Django, PostgreSQL, Docker, and AWS cloud infrastructure, 
+                I help transform ideas into robust digital solutions.
+            </p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="glassmorphism rounded-xl p-6">
+                <h3 class="text-xl font-bold mb-4">💼 Experience</h3>
+                <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-accent mr-2 mt-1"></i>
+                        <span>2+ years of Django development experience</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-accent mr-2 mt-1"></i>
+                        <span>AWS cloud deployment and management</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-accent mr-2 mt-1"></i>
+                        <span>PostgreSQL database design and optimization</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-accent mr-2 mt-1"></i>
+                        <span>REST API development with Django REST Framework</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="glassmorphism rounded-xl p-6">
+                <h3 class="text-xl font-bold mb-4">🎓 Education</h3>
+                <div class="space-y-4">
+                    <div>
+                        <h4 class="font-bold">Computer Science / Software Engineering</h4>
+                        <p class="text-slate">[Your University/Institution]</p>
+                        <p class="text-sm text-gray-400">[Year] - [Year]</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold">AWS Certified Solutions Architect</h4>
+                        <p class="text-slate">Amazon Web Services</p>
+                        <p class="text-sm text-gray-400">[Year]</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="glassmorphism rounded-xl p-6 mt-8">
+            <h3 class="text-xl font-bold mb-4">🚀 What I Do</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="text-center p-4">
+                    <i class="fas fa-code text-3xl text-accent mb-3"></i>
+                    <h4 class="font-bold mb-2">Backend Development</h4>
+                    <p class="text-slate text-sm">Django, Python, APIs, Databases</p>
+                </div>
+                <div class="text-center p-4">
+                    <i class="fas fa-cloud text-3xl text-accent mb-3"></i>
+                    <h4 class="font-bold mb-2">Cloud Deployment</h4>
+                    <p class="text-slate text-sm">AWS, Docker, CI/CD, DevOps</p>
+                </div>
+                <div class="text-center p-4">
+                    <i class="fas fa-server text-3xl text-accent mb-3"></i>
+                    <h4 class="font-bold mb-2">System Architecture</h4>
+                    <p class="text-slate text-sm">Scalability, Security, Performance</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-8">
+            <a href="{% url 'contact:contact' %}" 
+               class="inline-block bg-accent text-primary px-8 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition">
+                Get In Touch
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

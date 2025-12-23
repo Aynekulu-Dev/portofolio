@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}Portfolio - {{ site_settings.site_name|default:"DevPortfolio" }}{% endblock %}
+
+{% block content %}
+<div class="py-12">
+    <div class="text-center mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">My Portfolio</h1>
+        <p class="text-xl text-slate max-w-2xl mx-auto">
+            A collection of my recent projects and work
+        </p>
+    </div>
+    
+    <!-- Projects Grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {% for project in projects %}
+        <div class="glassmorphism rounded-lg overflow-hidden hover:transform hover:scale-[1.02] transition duration-300">
+            {% if project.featured_image %}
+            <div class="h-48 overflow-hidden">
+                <img src="{{ project.featured_image.url }}" 
+                     alt="{{ project.title }}" 
+                     class="w-full h-full object-cover">
+            </div>
+            {% endif %}
+            
+            <div class="p-6">
+                <h3 class="text-2xl font-bold mb-2">{{ project.title }}</h3>
+                <p class="text-slate mb-4">{{ project.short_description }}</p>
+                
+                <!-- Technologies -->
+                <div class="flex flex-wrap gap-2 mb-4">
+                    {% for tech in project.technologies.all|slice:":3" %}
+                    <span class="bg-accent/20 text-accent px-3 py-1 rounded-full text-sm">
+                        <i class="{{ tech.icon }} mr-1"></i> {{ tech.name }}
+                    </span>
+                    {% endfor %}
+                    {% if project.technologies.count > 3 %}
+                    <span class="bg-gray-700 text-slate px-3 py-1 rounded-full text-sm">
+                        +{{ project.technologies.count|add:"-3" }} more
+                    </span>
+                    {% endif %}
+                </div>
+                
+                <!-- Links -->
+                <div class="flex space-x-4">
+                    {% if project.github_url %}
+                    <a href="{{ project.github_url }}" target="_blank" 
+                       class="text-slate hover:text-accent" title="View Code">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    {% endif %}
+                    
+                    {% if project.live_url %}
+                    <a href="{{ project.live_url }}" target="_blank"
+                       class="text-slate hover:text-accent" title="Live Demo">
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                    {% endif %}
+                    
+                    <a href="{% url 'portfolio:project_detail' project.slug %}"
+                       class="text-accent hover:underline ml-auto">
+                        Details →
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-span-3 text-center py-12">
+            <p class="text-xl text-slate">No projects published yet. Check back soon!</p>
+            {% if user.is_staff %}
+            <a href="/admin/portfolio/project/add/" class="text-accent hover:underline mt-4 inline-block">
+                Add a project in admin
+            </a>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
