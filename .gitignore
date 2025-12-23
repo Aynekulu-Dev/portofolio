@@ -1,25 +1,49 @@
-# Node modules (if using npm for Tailwind or JS packages)
-node_modules/
+# Django
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
 
-# Build / dist folders
-dist/
-build/
+# Database
+*.sqlite3
+*.db
 
-# IDE / Editor
+# Static files
+staticfiles/
+media/
+
+# Environment variables
+.env
+*.env
+
+# IDE
 .vscode/
 .idea/
+*.swp
+*.swo
 
-# Logs
-*.log
-
-# Environment files (sensitive data)
-.env
-.env.local
-.env.*.local
-
-# Mac / Linux OS files
+# OS
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
 
-# Tailwind / npm cache
-package-lock.json
+# Logs
+logs/
+*.log
+
+# Coverage
+.coverage
+htmlcov/
+
+# PyCharm
+.idea/
