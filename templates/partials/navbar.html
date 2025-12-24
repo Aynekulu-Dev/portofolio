@@ -1,10 +1,26 @@
 <nav class="glassmorphism sticky top-0 z-50" x-data="{ mobileMenuOpen: false }">
     <div class="container mx-auto px-4">
         <div class="flex justify-between items-center py-4">
-            <!-- Logo -->
-            <a href="{% url 'home' %}" class="text-2xl font-bold gradient-text">
-                {{ site_settings.site_name|default:"DevPortfolio" }}
-            </a>
+            <!-- Logo & Profile -->
+            <div class="flex items-center gap-3">
+                <!-- Profile Photo (small) -->
+                <div class="w-8 h-8 rounded-full overflow-hidden border border-accent/30">
+                    {% if site_settings.site_logo %}
+                    <img src="{{ site_settings.site_logo.url }}" 
+                         alt="Profile" 
+                         class="w-full h-full object-cover">
+                    {% else %}
+                    <div class="w-full h-full bg-accent/20 flex items-center justify-center">
+                        <i class="fas fa-user text-sm text-accent"></i>
+                    </div>
+                    {% endif %}
+                </div>
+                
+                <!-- Site Name -->
+                <a href="{% url 'home' %}" class="text-2xl font-bold gradient-text">
+                    {{ site_settings.site_name|default:"DevPortfolio" }}
+                </a>
+            </div>
             
             <!-- Desktop Menu -->
             <div class="hidden md:flex space-x-8 items-center">
@@ -13,7 +29,7 @@
                 <a href="{% url 'skills:skill_list' %}" class="hover:text-accent transition">Skills</a>
                 <a href="{% url 'blog:post_list' %}" class="hover:text-accent transition">Blog</a>
                 <a href="{% url 'contact:contact' %}" class="hover:text-accent transition">Contact</a>
-                <a href="{% url 'about' %}" class="hover:text-accent transition">About</a>  <!-- ADDED THIS LINE -->
+                <a href="{% url 'about' %}" class="hover:text-accent transition">About</a>
                 {% if user.is_staff %}
                 <a href="/admin" class="bg-accent text-primary px-4 py-2 rounded-lg font-semibold hover:bg-opacity-90 transition ml-4">
                     Admin
@@ -35,7 +51,7 @@
                 <a href="{% url 'skills:skill_list' %}" class="hover:text-accent transition">Skills</a>
                 <a href="{% url 'blog:post_list' %}" class="hover:text-accent transition">Blog</a>
                 <a href="{% url 'contact:contact' %}" class="hover:text-accent transition">Contact</a>
-                <a href="{% url 'about' %}" class="hover:text-accent transition">About</a>  <!-- ADDED THIS LINE -->
+                <a href="{% url 'about' %}" class="hover:text-accent transition">About</a>
                 {% if user.is_staff %}
                 <a href="/admin" class="bg-accent text-primary px-4 py-2 rounded-lg font-semibold text-center mt-2">
                     Admin

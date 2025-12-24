@@ -1,0 +1,32 @@
+<!-- Profile Header -->
+<div class="py-8 border-b border-gray-800">
+    <div class="container mx-auto px-4">
+        <div class="flex items-center gap-4">
+            <!-- Profile Photo -->
+            <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-accent/40">
+                {% if site_settings.site_logo %}
+                <img src="{{ site_settings.site_logo.url }}" 
+                     alt="{{ site_settings.site_name|default:'Profile' }}" 
+                     class="w-full h-full object-cover">
+                {% else %}
+                <div class="w-full h-full bg-accent/20 flex items-center justify-center">
+                    <i class="fas fa-user text-2xl text-accent/60"></i>
+                </div>
+                {% endif %}
+            </div>
+            
+            <!-- Name & Title -->
+            <div>
+                <h2 class="text-xl font-bold gradient-text">Aynekulu Molla</h2>
+                <p class="text-slate text-sm">Django & AWS Developer</p>
+            </div>
+            
+            <!-- Available Badge -->
+            <div class="ml-auto">
+                <span class="bg-green-900/30 text-green-400 px-3 py-1 rounded-full text-sm">
+                    <i class="fas fa-circle text-xs mr-1"></i> Available for work
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

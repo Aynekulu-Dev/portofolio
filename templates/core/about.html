@@ -5,10 +5,57 @@
 {% block content %}
 <div class="py-12">
     <div class="max-w-4xl mx-auto">
-        <h1 class="text-4xl md:text-5xl font-bold mb-8 text-center">About Me</h1>
+        <!-- Profile Header -->
+        <div class="flex flex-col md:flex-row items-center gap-8 mb-12">
+            <!-- Profile Photo -->
+            <div class="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-accent/30 shadow-xl">
+                {% if site_settings.site_logo %}
+                <img src="{{ site_settings.site_logo.url }}" 
+                     alt="{{ site_settings.site_name|default:'Profile Photo' }}" 
+                     class="w-full h-full object-cover">
+                {% else %}
+                <div class="w-full h-full bg-gradient-to-br from-accent/20 to-secondary flex items-center justify-center">
+                    <i class="fas fa-user text-6xl text-accent/50"></i>
+                </div>
+                {% endif %}
+            </div>
+            
+            <!-- Name & Title -->
+            <div class="text-center md:text-left">
+                <h1 class="text-4xl md:text-5xl font-bold mb-2 gradient-text">
+                    Aynekulu Molla
+                </h1>
+                <p class="text-xl text-slate mb-4">
+                    Backend Developer specializing in Django & AWS
+                </p>
+                <div class="flex justify-center md:justify-start gap-3">
+                    {% if site_settings.github_url %}
+                    <a href="{{ site_settings.github_url }}" target="_blank" 
+                       class="text-2xl text-slate hover:text-accent transition">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    {% endif %}
+                    
+                    {% if site_settings.linkedin_url %}
+                    <a href="{{ site_settings.linkedin_url }}" target="_blank" 
+                       class="text-2xl text-slate hover:text-accent transition">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    {% endif %}
+                    
+                    {% if site_settings.email %}
+                    <a href="mailto:{{ site_settings.email }}" 
+                       class="text-2xl text-slate hover:text-accent transition">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
         
+        <!-- About Content -->
         <div class="glassmorphism rounded-xl p-8 mb-8">
-            <h2 class="text-2xl font-bold mb-4">Hi, I'm Aynekulu Molla👋</h2>
+            <h2 class="text-2xl font-bold mb-4">Hi, I'm Aynekulu 👋</h2>
             <p class="text-slate text-lg mb-4">
                 I'm a passionate backend developer specializing in Django, Python, and AWS. 
                 I build scalable web applications and REST APIs with a focus on performance, 
@@ -44,17 +91,17 @@
             </div>
             
             <div class="glassmorphism rounded-xl p-6">
-                <h3 class="text-xl font-bold mb-4">🎓 Education</h3>
+                <h3 class="text-xl font-bold mb-4">🎓 Education & Certifications</h3>
                 <div class="space-y-4">
                     <div>
                         <h4 class="font-bold">Software Engineering</h4>
-                        <p class="text-slate">Adama Scince and Technology University</p>
-                        <p class="text-sm text-gray-400">2000 - 2025</p>
+                        <p class="text-slate">Adama Science and Technology University</p>
+                        <p class="text-sm text-gray-400">2021 - Present</p>
                     </div>
                     <div>
-                        <h4 class="font-bold">AWS Certified Solutions Architect</h4>
+                        <h4 class="font-bold">AWS Cloud Practitioner</h4>
                         <p class="text-slate">Amazon Web Services</p>
-                        <p class="text-sm text-gray-400">1</p>
+                        <p class="text-sm text-gray-400">2024</p>
                     </div>
                 </div>
             </div>

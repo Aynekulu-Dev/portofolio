@@ -18,11 +18,11 @@
         </p>
         
         <div class="flex flex-col md:flex-row justify-center gap-4">
-            <a href="#portfolio" 
+            <a href="{% url 'portfolio:project_list' %}" 
                class="bg-accent text-primary px-8 py-4 rounded-lg text-lg font-semibold hover:bg-opacity-90 transition">
                 View My Work
             </a>
-            <a href="#contact" 
+            <a href="{% url 'contact:contact' %}" 
                class="border-2 border-accent text-accent px-8 py-4 rounded-lg text-lg font-semibold hover:bg-accent hover:text-primary transition">
                 Contact Me
             </a>
@@ -81,7 +81,7 @@
                     <span class="bg-accent text-primary px-3 py-1 rounded-full text-sm">DRF</span>
                     <span class="bg-accent text-primary px-3 py-1 rounded-full text-sm">PostgreSQL</span>
                 </div>
-                <a href="#" class="text-accent hover:underline">View Project →</a>
+                <a href="{% url 'portfolio:project_list' %}" class="text-accent hover:underline">View Projects →</a>
             </div>
         </div>
         
@@ -94,7 +94,7 @@
                     <span class="bg-accent text-primary px-3 py-1 rounded-full text-sm">Tailwind</span>
                     <span class="bg-accent text-primary px-3 py-1 rounded-full text-sm">AWS</span>
                 </div>
-                <a href="#" class="text-accent hover:underline">View Project →</a>
+                <a href="https://54-229-209-23.nip.io" target="_blank" class="text-accent hover:underline">Visit Live →</a>
             </div>
         </div>
         
@@ -107,7 +107,7 @@
                     <span class="bg-accent text-primary px-3 py-1 rounded-full text-sm">Channels</span>
                     <span class="bg-accent text-primary px-3 py-1 rounded-full text-sm">Redis</span>
                 </div>
-                <a href="#" class="text-accent hover:underline">View Project →</a>
+                <a href="{% url 'portfolio:project_list' %}" class="text-accent hover:underline">View Projects →</a>
             </div>
         </div>
     </div>
@@ -120,7 +120,7 @@
         <p class="text-xl text-slate mb-8">
             Interested in collaborating on a project? Feel free to reach out!
         </p>
-        <a href="#contact" 
+        <a href="{% url 'contact:contact' %}" 
            class="inline-block bg-accent text-primary px-8 py-4 rounded-lg text-lg font-semibold hover:bg-opacity-90 transition">
             Get In Touch
         </a>

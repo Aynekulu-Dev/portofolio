@@ -191,3 +191,6 @@ backup/
 *.tar.gz
 temp/
 tmp/
+venv/
+.env
+__pycache__/
