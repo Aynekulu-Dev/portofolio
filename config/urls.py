@@ -8,7 +8,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('tinymce/', include('tinymce.urls')),
     path('', include('core.urls')),
-    path('portfolio/', include('portfolio.urls')),
+    path('projects/', include('portfolio.urls')),
     path('blog/', include('blog.urls')),
     path('skills/', include('skills.urls')),
     path('contact/', include('contact.urls')),

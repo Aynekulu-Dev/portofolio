@@ -17,7 +17,7 @@ SECRET_KEY = config('SECRET_KEY', default='django-insecure-development-key-chang
 DEBUG = config('DEBUG', default=True, cast=bool)
 
 # Get ALLOWED_HOSTS from environment variable
-ALLOWED_HOSTS_STR = config('ALLOWED_HOSTS', default='localhost,127.0.0.1')
+ALLOWED_HOSTS_STR = config('ALLOWED_HOSTS', default='localhost,127.0.0.1,54-229-209-23.nip.io')
 ALLOWED_HOSTS = [host.strip() for host in ALLOWED_HOSTS_STR.split(',') if host.strip()]
 
 # Add 'testserver' for testing
@@ -26,6 +26,9 @@ if 'test' in sys.argv:
 
 # ==================== APPLICATION DEFINITION ====================
 INSTALLED_APPS = [
+    # JAZZMIN MUST COME BEFORE django.contrib.admin
+    'jazzmin',
+    
     # Django Core Apps
     'django.contrib.admin',
     'django.contrib.auth',
@@ -52,6 +55,174 @@ INSTALLED_APPS = [
     'contact',
     'utils',  # Keep only if you need it
 ]
+
+# ==================== JAZZMIN ADMIN CONFIGURATION ====================
+JAZZMIN_SETTINGS = {
+    # Title on the brand (19 chars max)
+    "site_title": "DevPortfolio Admin",
+    
+    # Title on the login screen (19 chars max)
+    "site_header": "DevPortfolio Pro",
+    
+    # Title on the brand (19 chars max)
+    "site_brand": "DevPortfolio",
+    
+    # Logo to use for your site, must be present in static files, used for brand on top left
+    # "site_logo": "images/admin-logo.png",
+    
+    # Welcome text on the login screen
+    "welcome_sign": "Welcome to DevPortfolio Admin",
+    
+    # Copyright on the footer
+    "copyright": "Aynekulu Molla",
+    
+    # The model admin to search from the search bar, search bar omitted if excluded
+    "search_model": "auth.User",
+    
+    # Field name on user model that contains avatar ImageField/URLField/Charfield or a callable that receives the user
+    "user_avatar": None,
+    
+    ############
+    # Top Menu #
+    ############
+    
+    # Links to put along the top menu
+    "topmenu_links": [
+        # Url that gets reversed (Permissions can be added)
+        {"name": "Home", "url": "admin:index", "permissions": ["auth.view_user"]},
+        
+        # External URL that opens in a new window (Permissions can be added)
+        {"name": "Live Site", "url": "/", "new_window": True},
+        
+        # App with dropdown menu to all its models pages (Permissions checked against models)
+        {"model": "auth.User"},
+        
+        # Custom admin page link
+        {"name": "Analytics", "url": "/admin/analytics/", "permissions": ["auth.view_user"]},
+    ],
+    
+    #############
+    # User Menu #
+    #############
+    
+    # Additional links to include in the user menu on the top right ("app" url type is not allowed)
+    "usermenu_links": [
+        {"name": "Support", "url": "https://github.com/farridav/django-jazzmin/issues", "new_window": True},
+        {"model": "auth.user"}
+    ],
+    
+    #############
+    # Side Menu #
+    #############
+    
+    # Whether to display the side menu
+    "show_sidebar": True,
+    
+    # Whether to aut expand the menu
+    "navigation_expanded": True,
+    
+    # Hide these apps when generating side menu e.g (auth)
+    "hide_apps": [],
+    
+    # Hide these models when generating side menu (e.g auth.user)
+    "hide_models": [],
+    
+    # List of apps (and/or models) to base side menu ordering off of (does not need to contain all apps/models)
+    "order_with_respect_to": [
+        "auth",
+        "core",
+        "portfolio",
+        "blog",
+        "skills",
+        "contact",
+    ],
+    
+    # Custom icons for side menu apps/models
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+        "auth.Group": "fas fa-users",
+        "core.SiteSettings": "fas fa-cog",
+        "core.Technology": "fas fa-microchip",
+        "portfolio.Project": "fas fa-project-diagram",
+        "blog.BlogPost": "fas fa-blog",
+        "blog.BlogCategory": "fas fa-folder",
+        "skills.Skill": "fas fa-code",
+        "skills.SkillCategory": "fas fa-layer-group",
+        "contact.ContactSubmission": "fas fa-envelope",
+    },
+    
+    # Icons that are used when one is not manually specified
+    "default_icon_parents": "fas fa-chevron-circle-right",
+    "default_icon_children": "fas fa-circle",
+    
+    #################
+    # Related Modal #
+    #################
+    # Use modals instead of popups
+    "related_modal_active": True,
+    
+    #############
+    # UI Tweaks #
+    #############
+    # Relative paths to custom CSS/JS scripts (must be present in static files)
+    "custom_css": None,
+    "custom_js": None,
+    
+    # Whether to show the UI customizer on the sidebar
+    "show_ui_builder": True,
+    
+    ###############
+    # Change view #
+    ###############
+    # Render out the change view as a single form, or in tabs, current options are
+    # - single
+    # - horizontal_tabs (default)
+    # - vertical_tabs
+    # - collapsible
+    # - carousel
+    "changeform_format": "horizontal_tabs",
+    
+    # override change forms on a per modeladmin basis
+    "changeform_format_overrides": {"auth.user": "collapsible", "auth.group": "vertical_tabs"},
+    
+    # Add a language dropdown into the admin
+    "language_chooser": False,
+}
+
+# Jazzmin UI Tweaks
+JAZZMIN_UI_TWEAKS = {
+    "navbar_small_text": False,
+    "footer_small_text": False,
+    "body_small_text": False,
+    "brand_small_text": False,
+    "brand_colour": "navbar-dark",
+    "accent": "accent-primary",
+    "navbar": "navbar-white navbar-light",
+    "no_navbar_border": False,
+    "navbar_fixed": True,
+    "layout_boxed": False,
+    "footer_fixed": False,
+    "sidebar_fixed": True,
+    "sidebar": "sidebar-dark-primary",
+    "sidebar_nav_small_text": False,
+    "sidebar_disable_expand": False,
+    "sidebar_nav_child_indent": True,
+    "sidebar_nav_compact_style": False,
+    "sidebar_nav_legacy_style": False,
+    "sidebar_nav_flat_style": False,
+    "theme": "default",
+    "dark_mode_theme": None,
+    "button_classes": {
+        "primary": "btn-outline-primary",
+        "secondary": "btn-outline-secondary",
+        "info": "btn-outline-info",
+        "warning": "btn-outline-warning",
+        "danger": "btn-outline-danger",
+        "success": "btn-outline-success"
+    },
+    "actions_sticky_top": True
+}
 
 # ==================== MIDDLEWARE ====================
 MIDDLEWARE = [
@@ -196,6 +367,7 @@ else:
     EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
     DEFAULT_FROM_EMAIL = config('EMAIL_HOST_USER', default='noreply@yourdomain.com')
     SERVER_EMAIL = config('EMAIL_HOST_USER', default='noreply@yourdomain.com')
+    
 
 # ==================== SECURITY SETTINGS FOR PRODUCTION ====================
 if not DEBUG:
@@ -262,7 +434,9 @@ if DEBUG:
     print(f"✅ Running in DEVELOPMENT mode")
     print(f"📁 Database: {DATABASES['default']['ENGINE']}")
     print(f"🌐 Allowed Hosts: {ALLOWED_HOSTS}")
+    print(f"🎨 Jazzmin Admin: Enabled")
 else:
     print(f"🚀 Running in PRODUCTION mode")
     print(f"📁 Database: {DATABASES['default']['ENGINE']}")
     print(f"🌐 Allowed Hosts: {ALLOWED_HOSTS}")
+    print(f"🎨 Jazzmin Admin: Enabled")

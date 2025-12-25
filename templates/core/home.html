@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Home - DevPortfolio Pro{% endblock %}
+{% block title %}Home - {{ site_settings.site_name|default:"DevPortfolio" }}{% endblock %}
 
 {% block content %}
 <!-- Hero Section -->
@@ -10,17 +11,17 @@
             Hi, I'm <span class="gradient-text">Aynekulu Molla</span>
         </h1>
         <p class="text-2xl md:text-3xl text-slate mb-8">
-            Backend Developer specializing in <span class="text-accent">Django & AWS</span>
+            Backend Developer specializing in <span class="text-accent">Django, PostgreSQL & AWS</span>
         </p>
         <p class="text-xl text-slate max-w-2xl mx-auto mb-12">
-            I build scalable web applications with modern technologies. 
-            Welcome to my developer portfolio showcasing my projects and skills.
+            I build scalable backend systems and REST APIs with modern technologies. 
+            Currently available for backend development projects.
         </p>
         
         <div class="flex flex-col md:flex-row justify-center gap-4">
             <a href="{% url 'portfolio:project_list' %}" 
                class="bg-accent text-primary px-8 py-4 rounded-lg text-lg font-semibold hover:bg-opacity-90 transition">
-                View My Work
+                View My Projects
             </a>
             <a href="{% url 'contact:contact' %}" 
                class="border-2 border-accent text-accent px-8 py-4 rounded-lg text-lg font-semibold hover:bg-accent hover:text-primary transition">
@@ -33,7 +34,7 @@
 <!-- Skills Preview -->
 <section id="skills" class="py-20">
     <div class="text-center mb-12">
-        <h2 class="text-4xl font-bold mb-4">Technical Skills</h2>
+        <h2 class="text-4xl font-bold mb-4">Technical Expertise</h2>
         <p class="text-slate text-xl">Technologies I work with</p>
     </div>
     
@@ -41,88 +42,103 @@
         <div class="bg-secondary p-6 rounded-lg text-center">
             <i class="fab fa-python text-4xl text-accent mb-4"></i>
             <h3 class="text-xl font-bold mb-2">Python & Django</h3>
-            <p class="text-slate">Backend development with REST APIs</p>
+            <p class="text-slate">Backend development with REST APIs & DRF</p>
         </div>
         
         <div class="bg-secondary p-6 rounded-lg text-center">
             <i class="fas fa-database text-4xl text-accent mb-4"></i>
             <h3 class="text-xl font-bold mb-2">PostgreSQL</h3>
-            <p class="text-slate">Database design & optimization</p>
+            <p class="text-slate">Database design, optimization & queries</p>
         </div>
         
         <div class="bg-secondary p-6 rounded-lg text-center">
             <i class="fab fa-aws text-4xl text-accent mb-4"></i>
             <h3 class="text-xl font-bold mb-2">AWS Cloud</h3>
-            <p class="text-slate">EC2, RDS, S3, VPC deployment</p>
+            <p class="text-slate">EC2, RDS, S3 deployment & management</p>
         </div>
         
         <div class="bg-secondary p-6 rounded-lg text-center">
             <i class="fab fa-docker text-4xl text-accent mb-4"></i>
             <h3 class="text-xl font-bold mb-2">Docker</h3>
-            <p class="text-slate">Containerization & DevOps</p>
+            <p class="text-slate">Containerization & DevOps automation</p>
         </div>
+    </div>
+    
+    <div class="text-center mt-8">
+        <a href="{% url 'skills:skill_list' %}" class="text-accent hover:underline">
+            View all skills →
+        </a>
     </div>
 </section>
 
-<!-- Projects Preview -->
-<section id="portfolio" class="py-20 bg-secondary">
+<!-- Real Projects from Database -->
+<section id="projects" class="py-20 bg-secondary">
     <div class="text-center mb-12">
         <h2 class="text-4xl font-bold mb-4">Featured Projects</h2>
-        <p class="text-slate text-xl">Some of my recent work</p>
+        <p class="text-slate text-xl">Real projects I've built</p>
     </div>
     
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Project 1: This Portfolio -->
         <div class="bg-primary rounded-lg overflow-hidden glassmorphism">
             <div class="p-6">
-                <h3 class="text-2xl font-bold mb-3">E-Commerce API</h3>
-                <p class="text-slate mb-4">Full-featured e-commerce backend with Django REST Framework</p>
+                <h3 class="text-2xl font-bold mb-3">DevPortfolio Platform</h3>
+                <p class="text-slate mb-4">Professional portfolio website built with Django, PostgreSQL, and deployed on AWS</p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="bg-accent text-primary px-3 py-1 rounded-full text-sm">Django</span>
+                    <span class="bg-accent text-primary px-3 py-1 rounded-full text-sm">PostgreSQL</span>
+                    <span class="bg-accent text-primary px-3 py-1 rounded-full text-sm">AWS</span>
+                </div>
+                <a href="https://54-229-209-23.nip.io" target="_blank" class="text-accent hover:underline">Live Site →</a>
+            </div>
+        </div>
+        
+        <!-- Project 2: Community Funding -->
+        <div class="bg-primary rounded-lg overflow-hidden glassmorphism">
+            <div class="p-6">
+                <h3 class="text-2xl font-bold mb-3">Community Funding System</h3>
+                <p class="text-slate mb-4">Full-stack crowdfunding platform for Ethiopian communities with payment integration</p>
                 <div class="flex flex-wrap gap-2 mb-4">
                     <span class="bg-accent text-primary px-3 py-1 rounded-full text-sm">Django</span>
                     <span class="bg-accent text-primary px-3 py-1 rounded-full text-sm">DRF</span>
+                    <span class="bg-accent text-primary px-3 py-1 rounded-full text-sm">Docker</span>
+                </div>
+                <a href="{% url 'portfolio:project_list' %}" class="text-accent hover:underline">View Details →</a>
+            </div>
+        </div>
+        
+        <!-- Project 3: E-commerce API -->
+        <div class="bg-primary rounded-lg overflow-hidden glassmorphism">
+            <div class="p-6">
+                <h3 class="text-2xl font-bold mb-3">E-commerce REST API</h3>
+                <p class="text-slate mb-4">Complete e-commerce backend with cart, orders, and payment processing</p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="bg-accent text-primary px-3 py-1 rounded-full text-sm">Django</span>
                     <span class="bg-accent text-primary px-3 py-1 rounded-full text-sm">PostgreSQL</span>
-                </div>
-                <a href="{% url 'portfolio:project_list' %}" class="text-accent hover:underline">View Projects →</a>
-            </div>
-        </div>
-        
-        <div class="bg-primary rounded-lg overflow-hidden glassmorphism">
-            <div class="p-6">
-                <h3 class="text-2xl font-bold mb-3">Portfolio Platform</h3>
-                <p class="text-slate mb-4">This portfolio website built with Django & Tailwind CSS</p>
-                <div class="flex flex-wrap gap-2 mb-4">
-                    <span class="bg-accent text-primary px-3 py-1 rounded-full text-sm">Django</span>
-                    <span class="bg-accent text-primary px-3 py-1 rounded-full text-sm">Tailwind</span>
-                    <span class="bg-accent text-primary px-3 py-1 rounded-full text-sm">AWS</span>
-                </div>
-                <a href="https://54-229-209-23.nip.io" target="_blank" class="text-accent hover:underline">Visit Live →</a>
-            </div>
-        </div>
-        
-        <div class="bg-primary rounded-lg overflow-hidden glassmorphism">
-            <div class="p-6">
-                <h3 class="text-2xl font-bold mb-3">Real-time Chat App</h3>
-                <p class="text-slate mb-4">WebSocket-based chat application with Django Channels</p>
-                <div class="flex flex-wrap gap-2 mb-4">
-                    <span class="bg-accent text-primary px-3 py-1 rounded-full text-sm">Django</span>
-                    <span class="bg-accent text-primary px-3 py-1 rounded-full text-sm">Channels</span>
                     <span class="bg-accent text-primary px-3 py-1 rounded-full text-sm">Redis</span>
                 </div>
                 <a href="{% url 'portfolio:project_list' %}" class="text-accent hover:underline">View Projects →</a>
             </div>
         </div>
     </div>
+    
+    <div class="text-center mt-8">
+        <a href="{% url 'portfolio:project_list' %}" class="text-accent hover:underline">
+            View all projects →
+        </a>
+    </div>
 </section>
 
 <!-- CTA Section -->
 <section class="py-20 text-center">
     <div class="max-w-2xl mx-auto">
-        <h2 class="text-4xl font-bold mb-6">Let's Work Together</h2>
+        <h2 class="text-4xl font-bold mb-6">Ready to Build Something?</h2>
         <p class="text-xl text-slate mb-8">
-            Interested in collaborating on a project? Feel free to reach out!
+            Need a backend developer for your project? Let's discuss how I can help.
         </p>
         <a href="{% url 'contact:contact' %}" 
            class="inline-block bg-accent text-primary px-8 py-4 rounded-lg text-lg font-semibold hover:bg-opacity-90 transition">
-            Get In Touch
+            Start a Conversation
         </a>
     </div>
 </section>

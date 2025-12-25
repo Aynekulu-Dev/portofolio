@@ -1,9 +1,11 @@
+# requirements.txt - Updated version
 asgiref==3.11.0
 boto3==1.42.15
 botocore==1.42.15
 crispy-tailwind==1.0.3
 Django==5.0
 django-crispy-forms==2.5
+django-jazzmin==2.6.0  # ADD THIS
 django-js-asset==3.1.2
 django-storages==1.14.6
 django-taggit==6.1.0
