@@ -17,7 +17,7 @@ SECRET_KEY = config('SECRET_KEY', default='django-insecure-development-key-chang
 DEBUG = config('DEBUG', default=True, cast=bool)
 
 # Get ALLOWED_HOSTS from environment variable
-ALLOWED_HOSTS_STR = config('ALLOWED_HOSTS', default='localhost,127.0.0.1,54-229-209-23.nip.io')
+ALLOWED_HOSTS_STR = config('ALLOWED_HOSTS', default='localhost,127.0.0.1,34-250-114-27.nip.io')
 ALLOWED_HOSTS = [host.strip() for host in ALLOWED_HOSTS_STR.split(',') if host.strip()]
 
 # Add 'testserver' for testing
@@ -440,3 +440,21 @@ else:
     print(f"📁 Database: {DATABASES['default']['ENGINE']}")
     print(f"🌐 Allowed Hosts: {ALLOWED_HOSTS}")
     print(f"🎨 Jazzmin Admin: Enabled")
+# ==================== AUTHENTICATION SETTINGS ====================
+LOGOUT_ALLOW_GET = True  # Allow GET requests for logout
+LOGOUT_REDIRECT_URL = '/admin/login/'  # Redirect to login after logout
+LOGIN_REDIRECT_URL = '/admin/'  # Redirect to admin after login
+LOGIN_URL = '/admin/login/'  # URL for login page
+
+# ==================== WHITENOISE SETTINGS ====================
+WHITENOISE_ROOT = STATIC_ROOT
+WHITENOISE_USE_FINDERS = True
+WHITENOISE_MANIFEST_STRICT = False
+WHITENOISE_AUTOREFRESH = True
+
+# Update Jazzmin settings
+JAZZMIN_SETTINGS.update({
+    "logout_url": "/admin/logout/",
+    "login_url": "/admin/login/",
+    "login_redirect_url": "/admin/",
+})

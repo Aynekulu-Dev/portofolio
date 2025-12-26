@@ -1,3 +1,4 @@
+# Replace your local config/urls.py with:
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
@@ -5,16 +6,27 @@ from django.conf.urls.static import static
 from django.contrib.auth.views import LogoutView
 from django.views.decorators.csrf import csrf_exempt
 
+# Custom logout view that respects LOGOUT_REDIRECT_URL
 @csrf_exempt
 def custom_admin_logout(request):
+    """
+    Custom logout view for admin that respects LOGOUT_REDIRECT_URL setting.
+    """
     from django.contrib.auth import logout
     from django.shortcuts import redirect
+    
     logout(request)
+    # Redirect to LOGOUT_REDIRECT_URL from settings
     return redirect(settings.LOGOUT_REDIRECT_URL)
 
 urlpatterns = [
+    # Override the admin logout with our custom view
     path('admin/logout/', custom_admin_logout, name='admin_logout'),
+    
+    # Admin site
     path('admin/', admin.site.urls),
+    
+    # Other URLs
     path('tinymce/', include('tinymce.urls')),
     path('', include('core.urls')),
     path('projects/', include('portfolio.urls')),
@@ -27,6 +39,7 @@ if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
+# Admin site customization
 admin.site.site_header = "DevPortfolio Pro Admin"
 admin.site.site_title = "DevPortfolio Pro Admin Portal"
 admin.site.index_title = "Welcome to DevPortfolio Pro Admin"
