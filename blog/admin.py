@@ -20,7 +20,7 @@ class BlogPostAdmin(admin.ModelAdmin):
     list_editable = ['status', 'is_featured', 'reading_time']
     search_fields = ['title', 'content', 'excerpt']
     prepopulated_fields = {'slug': ('title',)}
-    readonly_fields = ['views', 'created_at', 'updated_at', 'published_date']
+    readonly_fields = ['views', 'created_at', 'updated_at', 'published_date', 'thumbnail_preview']  # FIXED HERE
     date_hierarchy = 'published_date'
     
     fieldsets = (
