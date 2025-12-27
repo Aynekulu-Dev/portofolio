@@ -322,29 +322,29 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
 CRISPY_TEMPLATE_PACK = "tailwind"
 
 # TinyMCE Configuration
+# TinyMCE Configuration
 TINYMCE_DEFAULT_CONFIG = {
-    'height': 360,
+    'height': 500,
     'width': '100%',
     'cleanup_on_startup': True,
     'custom_undo_redo_levels': 20,
     'selector': 'textarea',
-    'theme': 'modern',
+    'theme': 'silver',
     'plugins': '''
-        textcolor save link image media preview codesample contextmenu
-        table code lists fullscreen insertdatetime nonbreaking
-        contextmenu directionality searchreplace wordcount visualblocks
-        visualchars code fullscreen autolink lists charmap print hr
-        anchor pagebreak
+        advlist autolink lists link image charmap print preview anchor
+        searchreplace visualblocks code fullscreen
+        insertdatetime media table paste code help wordcount
     ''',
-    'toolbar1': '''
-        fullscreen preview bold italic underline | fontselect,
-        fontsizeselect | forecolor backcolor | alignleft alignright |
-        aligncenter alignjustify | indent outdent | bullist numlist table |
-        | link image media | codesample |
+    'toolbar': '''
+        undo redo | formatselect | bold italic backcolor |
+        alignleft aligncenter alignright alignjustify |
+        bullist numlist outdent indent | removeformat | help |
+        image | link | table | code | preview
     ''',
-    'contextmenu': 'formats | link image',
     'menubar': True,
     'statusbar': True,
+    'resize': True,
+    'branding': False,
 }
 
 # Taggit
