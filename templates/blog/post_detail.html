@@ -36,7 +36,8 @@
             <h1 class="text-4xl md:text-5xl font-bold mb-4">{{ post.title }}</h1>
             
             {% if post.excerpt %}
-            <p class="text-xl text-slate mb-6">{{ post.excerpt }}</p>
+              <p class="text-xl text-slate mb-6">{{ post.excerpt|striptags }}</p>
+
             {% endif %}
             
             <div class="flex items-center justify-between">
@@ -101,7 +102,8 @@
                 <a href="{% url 'blog:post_detail' related.slug %}" 
                    class="glassmorphism rounded-lg p-6 hover:transform hover:scale-[1.02] transition duration-300 block">
                     <h4 class="text-lg font-bold mb-2">{{ related.title }}</h4>
-                    <p class="text-slate text-sm">{{ related.excerpt|truncatechars:100 }}</p>
+                    <p class="text-slate text-sm">{{ related.excerpt|striptags|truncatechars:100 }}</p>
+
                     <div class="text-sm text-slate mt-3">
                         {{ related.published_date|date:"M d, Y" }}
                     </div>
